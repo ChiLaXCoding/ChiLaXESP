@@ -16,7 +16,17 @@ PlayerList::PlayerList(Process* process, Module* module, int size) {
 
 	for (int i = 0; i < this->size; i++) {
 		this->list[i] = new Player(process, module, playerBaseOffset + (16 * i));
+
+		this->list[i]->Alive();
 	}
+}
+
+int PlayerList::Size() {
+	return this->size;
+}
+
+Player* PlayerList::LocalPlayer() {
+	return this->list[0];
 }
 
 void PlayerList::ActivePlayersToConsole() {
@@ -28,4 +38,12 @@ void PlayerList::ActivePlayersToConsole() {
 			count++;
 		}
 	}
+}
+
+boolean PlayerList::PlayerAliveAndEnemy(int index, int myTeamNumber) {
+	return (this->list[index]->Alive() && (myTeamNumber != this->list[index]->TeamNumber()));
+}
+
+int PlayerList::PlayerGlowIndex(int index) {
+	return this->list[index]->GlowIndex();
 }

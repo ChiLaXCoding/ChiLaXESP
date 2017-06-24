@@ -14,13 +14,16 @@ Player::Player(Process* process, Module* module, DWORD playerBaseOffset) {
 	this->playerBaseOffset = playerBaseOffset;
 }
 
-boolean Player::Alive() {
-	DWORD playerBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + this->playerBaseOffset);
+int Player::PlayerBaseAddress() {
+	return this->playerBaseAddress;
+}
 
-	this->teamNumber = this->process->ValueAtAddress<int>((DWORD)(playerBaseAddress + teamNumberOffset));
-	this->health = this->process->ValueAtAddress<int>((DWORD)(playerBaseAddress + healthOffset));
-	this->dormant = this->process->ValueAtAddress<int>((DWORD)(playerBaseAddress + dormantOffset));
-	this->glowIndex = this->process->ValueAtAddress<int>((DWORD)(playerBaseAddress + glowIndexOffset));
+boolean Player::Alive() {
+	this->playerBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + this->playerBaseOffset);
+
+	this->teamNumber = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + teamNumberOffset));
+	this->health = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + healthOffset));
+	this->glowIndex = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + glowIndexOffset));
 
 	if ((this->teamNumber != 2) && (this->teamNumber != 3)) {
 		return false;

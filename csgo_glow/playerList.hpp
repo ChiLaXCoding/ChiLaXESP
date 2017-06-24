@@ -17,8 +17,11 @@ class PlayerList
 public:
 	PlayerList(Process* process, Module* module, int size);
 
+	int Size();
+	Player* LocalPlayer();
 	void ActivePlayersToConsole();
-
+	boolean PlayerAliveAndEnemy(int index, int myTeamNumber);
+	int PlayerGlowIndex(int index);
 private:
 	Process* process;
 	Module* module;
