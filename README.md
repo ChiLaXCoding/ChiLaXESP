@@ -12,3 +12,7 @@ To activate it in-game, you have to enable developer console and insert the foll
 
 This will only work offline against bots, because the source engine doesn't allow the sv_cheats command in multiplayer lobbies. 
 Thus, we will try to bypass this check and access the glow feature through memory altering. 
+
+# Sources 
+
+https://github.com/iseekwonderful/csgoGlow 
