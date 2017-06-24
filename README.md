@@ -1,8 +1,8 @@
-##ChiLaXGlow
+# ChiLaXGlow
 
 An unfinished open source hacking project for Counter-Strike: Global Offensive, based on the public glow ESP method. 
 
-##Glow ESP
+# Glow ESP
 
 Glow is a built-in feature in source engine that can be enabled through developer console.
 To activate it in-game, you have to enable developer console and insert the following commands:
