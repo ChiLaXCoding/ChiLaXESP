@@ -16,3 +16,7 @@ Thus, we will try to bypass this check and access the glow feature through memor
 # Sources 
 
 https://github.com/iseekwonderful/csgoGlow 
+
+# Licenses
+
+[GNU GPL v3.0](https://www.gnu.org/licenses/gpl-3.0)
