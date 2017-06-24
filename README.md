@@ -16,10 +16,10 @@ Thus, we will try to bypass this check and access the glow feature through memor
 # Disclaimer
 
 This hacking software was made only for educational purposes and the creator strictly prohibits the usage in online lobbies of the actual game.
-Hacking in online multiplayer games is very unfair and irresponsible towards the community of players, and disrespectful against players that honest their skill in thousands of hours of hard labour.
-If you want to try this tool make sure to create your own server and test the feature against bots. Additionally you can use the *-insecure* launch option to make sure, the server will not be VAC protected.
+Hacking in online multiplayer games is very unfair and irresponsible towards the community, and disrespectful against players that honest their skill in thousands of hours of hard labour.
+If you want to try this tool make sure to create your own server and test the feature against bots. Additionally you can use the *-insecure* launch option to make sure that the server will not be VAC protected.
 
-# Sources 
+# Sources and Credits
 
 https://github.com/iseekwonderful/csgoGlow 
 
