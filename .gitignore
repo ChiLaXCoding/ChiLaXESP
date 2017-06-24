@@ -1,8 +1,11 @@
 /.vs
 /Debug
 /Release
-/csgo_glow/Debug
-/csgo_glow/Release
+/ChiLaXGlow/Debug
+/ChiLaXGlow/Release
 *.sln
 *.vcxproj
 *.filters
+*.txt
+*.h
+stdafx.cpp
