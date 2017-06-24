@@ -16,11 +16,11 @@ Thus, we will try to bypass this check and access the glow feature through memor
 # Crosshair ESP
 
 When aiming the gun at another player, source engine automatically displays the player name. 
-This ESP feature will play a beep sound, whenever the crosshair lies on top of an enemy target. 
+This ESP feature will read the entity ID value in memory and play a beep sound, whenever the crosshair lies on top of an enemy target. **Caution:** Very triggering sound effect!
 
 # Trigger Bot
 
-Using the public crosshair ESP method mentioned above, the application can automatically trigger the weapon when an enemy is in sight and the model intersects with the crosshair. 
+Using the public crosshair ESP method mentioned above, the application can automatically trigger the weapon when crosshair intersects with an enemy player model. 
 
 # Disclaimer
 
