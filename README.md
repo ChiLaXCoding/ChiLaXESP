@@ -21,8 +21,8 @@ If you want to try this tool make sure to create your own server and test the fe
 
 # Sources and Credits
 
-* https://github.com/iseekwonderful/csgoGlow 
 * https://github.com/ValveSoftware/source-sdk-2013
+* https://github.com/iseekwonderful/csgoGlow 
 
 # Licenses
 
