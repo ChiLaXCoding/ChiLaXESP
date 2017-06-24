@@ -14,7 +14,7 @@
 int main() {
 	boolean doHack = false;
 
-	printf("Welcome to ChiLaXGlow, an open source counter strike hack based on the public glow ESP method.\n\n");
+	printf("Welcome to ChiLaXESP, an open source counter strike hack based on the public glow ESP method.\n\n");
 
 	Process* csgoProcess = new Process(L"csgo.exe");
 
@@ -39,6 +39,11 @@ int main() {
 				printf("Press F9 to activate or deactive glow ESP.\n");
 
 				while (csgoProcess->Alive()) {
+					playerList->ActivePlayersToConsole();
+					std::cout << std::flush;
+					Sleep(200);
+					system("CLS");
+
 					if (GetKeyState(VK_F9) & 0x8000) {
 						if (!doHack) {
 							doHack = true;

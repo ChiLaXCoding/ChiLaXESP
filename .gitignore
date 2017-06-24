@@ -1,8 +1,8 @@
 /.vs
 /Debug
 /Release
-/ChiLaXGlow/Debug
-/ChiLaXGlow/Release
+/ChiLaXESP/Debug
+/ChiLaXESP/Release
 *.sln
 *.vcxproj
 *.filters

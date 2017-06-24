@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//  localPlayer.hpp
+//  player.hpp
 //
 //  Created by ChiLaX on 23/5/17.
 //  Copyright © 2017 ChiLaXSoft. All rights reserved.
@@ -19,15 +19,24 @@ public:
 	int PlayerBaseAddress();
 	int TeamNumber();
 	int GlowIndex();
+	float* Position();
 	void ToConsole();
 private:
 	Process* process;
 	Module* module;
-	int teamNumber, health, dormant, glowIndex;
+	int teamNumber, health, glowIndex;
+	float* viewAngle;
+	float* position;
 	DWORD playerBaseAddress;
 
 	DWORD playerBaseOffset;
 	DWORD teamNumberOffset = 0xF0;
 	DWORD healthOffset = 0xFC;
+	DWORD viewAngleXOffset = 0x128;
+	DWORD viewAngleYOffset = viewAngleXOffset + 0x4;
+	DWORD viewAngleZOffset = viewAngleYOffset + 0x4;
+	DWORD positionXOffset = 0x134;
+	DWORD positionYOffset = positionXOffset + 0x4;
+	DWORD positionZOffset = positionYOffset + 0x4;
 	DWORD glowIndexOffset = 0xA320;
 };

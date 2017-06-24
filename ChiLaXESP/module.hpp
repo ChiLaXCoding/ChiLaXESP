@@ -15,7 +15,7 @@ public:
 	Module(Process* process, WCHAR* moduleName);
 
 	boolean AcquiredBytes();
-	UINT64 PointerValueBySignature(BYTE* signature, char* mask, UINT32 start);
+	DWORD PointerValueBySignature(BYTE* signature, char* mask, DWORD start);
 	DWORD BaseAddress();
 private:
 	Process* process;
@@ -25,5 +25,5 @@ private:
 	BYTE* bytes;
 
 	boolean MaskCheck(int nOffset, BYTE* btPattern, const char * strMask, int sigLength);
-	UINT64 FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength);
+	DWORD FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength);
 };

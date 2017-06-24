@@ -1,6 +1,6 @@
-# ChiLaXGlow
+# ChiLaXESP
 
-An open source hacking project for Counter-Strike: Global Offensive, based on the public glow ESP method. 
+An open source hacking project for Counter-Strike: Global Offensive, based on public ESP methods. 
 
 # Glow ESP
 

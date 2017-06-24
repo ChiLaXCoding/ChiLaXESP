@@ -12,6 +12,8 @@ Player::Player(Process* process, Module* module, DWORD playerBaseOffset) {
 	this->process = process;
 	this->module = module;
 	this->playerBaseOffset = playerBaseOffset;
+	this->viewAngle = new float[3];
+	this->position = new float[3];
 }
 
 int Player::PlayerBaseAddress() {
@@ -23,6 +25,12 @@ boolean Player::Alive() {
 
 	this->teamNumber = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + teamNumberOffset));
 	this->health = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + healthOffset));
+	this->viewAngle[0] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + viewAngleXOffset));
+	this->viewAngle[1] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + viewAngleYOffset));
+	this->viewAngle[2] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + viewAngleZOffset));
+	this->position[0] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + positionXOffset));
+	this->position[1] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + positionYOffset));
+	this->position[2] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + positionZOffset));
 	this->glowIndex = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + glowIndexOffset));
 
 	if ((this->teamNumber != 2) && (this->teamNumber != 3)) {
@@ -36,16 +44,22 @@ boolean Player::Alive() {
 	return true;
 }
 
-void Player::ToConsole() {
-	if ((this->teamNumber == 2) || (this->teamNumber == 3)) {
-		printf("Team: %d Health: %d Dormant: %d\n", this->teamNumber, this->health, this->dormant);
-	}
-}
-
 int Player::TeamNumber() {
 	return this->teamNumber;
 }
 
 int Player::GlowIndex() {
 	return this->glowIndex;
+}
+
+float* Player::Position() {
+	return this->position;
+}
+
+void Player::ToConsole() {
+	if ((this->teamNumber == 2) || (this->teamNumber == 3)) {
+		printf("Team: %d Health: %d View Angle: %f %f %f Position: %f %f %f\n", this->teamNumber, this->health,
+			this->viewAngle[0], this->viewAngle[1], this->viewAngle[2],
+			this->position[0], this->position[1], this->position[2]);
+	}
 }

@@ -27,10 +27,10 @@ boolean Module::AcquiredBytes() {
 	return true;
 }
 
-UINT64 Module::PointerValueBySignature(BYTE* signature, char* mask, UINT32 offset) {
-	UINT64 fileOffset = this->FirstOffsetOfSignature(signature, mask, (int)strlen(mask)) + offset;
-	UINT64 signatureAddress = fileOffset + this->baseAddress;
-	UINT32 foundOffset = this->process->ValueAtAddress<UINT32>(signatureAddress) + (UINT32)fileOffset;
+DWORD Module::PointerValueBySignature(BYTE* signature, char* mask, DWORD offset) {
+	DWORD fileOffset = this->FirstOffsetOfSignature(signature, mask, (int)strlen(mask)) + offset;
+	DWORD signatureAddress = fileOffset + this->baseAddress;
+	DWORD foundOffset = this->process->ValueAtAddress<DWORD>((DWORD)signatureAddress) + fileOffset;
 
 	return foundOffset;
 }
@@ -57,7 +57,7 @@ boolean Module::MaskCheck(int nOffset, BYTE* btPattern, const char * strMask, in
 	return true;
 }
 
-UINT64 Module::FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength)
+DWORD Module::FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength)
 {
 	for (int i = 0; i < this->size; i++)
 	{
