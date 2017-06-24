@@ -10,5 +10,6 @@
 #include <Windows.h>
 #include <Tlhelp32.h>
 #include <stdio.h>
+#include <iostream>
 
 // TODO: Hier auf zusätzliche Header, die das Programm erfordert, verweisen.
