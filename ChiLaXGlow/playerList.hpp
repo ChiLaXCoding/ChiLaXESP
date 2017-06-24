@@ -7,9 +7,6 @@
 //  Copyright © 2017 ChiLaXSoft. All rights reserved.
 //
 
-#include "stdafx.h"
-#include "process.hpp"
-#include "module.hpp"
 #include "player.hpp"
 
 class PlayerList

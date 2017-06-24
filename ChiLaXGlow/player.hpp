@@ -7,7 +7,6 @@
 //  Copyright © 2017 ChiLaXSoft. All rights reserved.
 //
 
-#include "stdafx.h"
 #include "process.hpp"
 #include "module.hpp"
 
