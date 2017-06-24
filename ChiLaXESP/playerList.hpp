@@ -18,6 +18,7 @@ public:
 	Player* LocalPlayer();
 	void ActivePlayersToConsole();
 	boolean PlayerAliveAndEnemy(int index, int myTeamNumber);
+	boolean EntityIdAliveAndEnemy(int id, int myTeamNumber);
 	int PlayerGlowIndex(int index);
 private:
 	Process* process;

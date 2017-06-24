@@ -17,6 +17,7 @@ public:
 
 	boolean Alive();
 	int PlayerBaseAddress();
+	int EntityId();
 	int TeamNumber();
 	int GlowIndex();
 	float* Position();
@@ -24,12 +25,13 @@ public:
 private:
 	Process* process;
 	Module* module;
-	int teamNumber, health, glowIndex;
+	int entityId, teamNumber, health, glowIndex;
 	float* viewAngle;
 	float* position;
 	DWORD playerBaseAddress;
 
 	DWORD playerBaseOffset;
+	DWORD entityIdOffset = 0x64;
 	DWORD teamNumberOffset = 0xF0;
 	DWORD healthOffset = 0xFC;
 	DWORD viewAngleXOffset = 0x128;

@@ -12,10 +12,10 @@
 #include "module.hpp"
 #include "playerList.hpp"
 
-class Glow
+class GlowESP
 {
 public:
-	Glow(Process* process, Module* module, PlayerList* playerList);
+	GlowESP(Process* process, Module* module, PlayerList* playerList);
 
 	boolean AcquireBaseAddress();
 	boolean AppliedGlow();

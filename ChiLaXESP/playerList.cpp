@@ -44,6 +44,21 @@ boolean PlayerList::PlayerAliveAndEnemy(int index, int myTeamNumber) {
 	return (this->list[index]->Alive() && (myTeamNumber != this->list[index]->TeamNumber()));
 }
 
+boolean PlayerList::EntityIdAliveAndEnemy(int id, int myTeamNumber) {
+	for (int i = 0; i < size; i++) {
+		if (!this->list[i]->EntityId())
+			return false;
+		if (this->list[i]->EntityId() == id) {
+			if (this->list[i]->TeamNumber() != myTeamNumber) {
+				return true;
+			}
+			break;
+		}
+	}
+
+	return false;
+}
+
 int PlayerList::PlayerGlowIndex(int index) {
 	return this->list[index]->GlowIndex();
 }

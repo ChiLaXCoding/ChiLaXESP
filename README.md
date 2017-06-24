@@ -13,6 +13,15 @@ To activate it in-game, you have to enable developer console and insert the foll
 This will only work offline against bots, because the source engine doesn't allow the sv_cheats command in multiplayer lobbies. 
 Thus, we will try to bypass this check and access the glow feature through memory altering. 
 
+# Crosshair ESP
+
+When aiming the gun at another player, source engine automatically displays the player name. 
+This ESP feature will play a beep sound, whenever the crosshair lies on top of an enemy target. 
+
+# Trigger Bot
+
+Using the public crosshair ESP method mentioned above, the application can automatically trigger the weapon when an enemy is in sight and the model intersects with the crosshair. 
+
 # Disclaimer
 
 This hacking software was made only for educational purposes and the creator strictly prohibits the usage in online lobbies of the actual game.

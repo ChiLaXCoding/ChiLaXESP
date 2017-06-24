@@ -6,16 +6,16 @@
 //
 
 #include "stdafx.h"
-#include "glow.hpp"
+#include "glowESP.hpp"
 
-Glow::Glow(Process* process, Module* module, PlayerList* playerList) {
+GlowESP::GlowESP(Process* process, Module* module, PlayerList* playerList) {
 	this->process = process;
 	this->module = module;
 	this->playerList = playerList;
 	this->localPlayer = this->playerList->LocalPlayer();
 }
 
-boolean Glow::AcquireBaseAddress() {
+boolean GlowESP::AcquireBaseAddress() {
 	this->glowObjectBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + glowObjectOffset);
 	
 	DWORD localPlayerPointerAddress = this->glowObjectBaseAddress + (this->glowEntitySize * this->playerList->PlayerGlowIndex(0));
@@ -28,7 +28,7 @@ boolean Glow::AcquireBaseAddress() {
 	return true;
 }
 
-boolean Glow::AppliedGlow() {
+boolean GlowESP::AppliedGlow() {
 	if (this->process->Alive()) {
 		for (int i = 0; i < this->playerList->Size(); i++) {
 			if (this->playerList->PlayerAliveAndEnemy(i, this->localPlayer->TeamNumber())) {

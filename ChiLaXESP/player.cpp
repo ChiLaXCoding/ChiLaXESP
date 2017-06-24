@@ -1,5 +1,5 @@
 //
-//  localPlayer.cpp
+//  player.cpp
 //
 //  Created by ChiLaX on 23/5/17.
 //  Copyright © 2017 ChiLaXSoft. All rights reserved.
@@ -20,9 +20,17 @@ int Player::PlayerBaseAddress() {
 	return this->playerBaseAddress;
 }
 
+int Player::EntityId() {
+	return this->entityId;
+}
+
 boolean Player::Alive() {
 	this->playerBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + this->playerBaseOffset);
 
+	if (!this->playerBaseAddress)
+		return false;
+
+	this->entityId = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + entityIdOffset));
 	this->teamNumber = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + teamNumberOffset));
 	this->health = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + healthOffset));
 	this->viewAngle[0] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + viewAngleXOffset));
@@ -33,13 +41,11 @@ boolean Player::Alive() {
 	this->position[2] = this->process->ValueAtAddress<float>((DWORD)(this->playerBaseAddress + positionZOffset));
 	this->glowIndex = this->process->ValueAtAddress<int>((DWORD)(this->playerBaseAddress + glowIndexOffset));
 
-	if ((this->teamNumber != 2) && (this->teamNumber != 3)) {
+	if ((this->teamNumber != 2) && (this->teamNumber != 3))
 		return false;
-	}
 
-	if ((this->health <= 0) || (this->health > 100)) {
+	if ((this->health <= 0) || (this->health > 100))
 		return false;
-	}
 
 	return true;
 }
