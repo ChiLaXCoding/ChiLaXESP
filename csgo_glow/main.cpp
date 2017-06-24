@@ -32,7 +32,7 @@ int main()
 		}
 	}
 
-	printf("FINI\n");
+	printf("--- end of execution (press any button on keyboard) ---\n");
 	
 	/*
 	UINT64 PlayerBase = engineDllModule->PointerValueBySignature(
