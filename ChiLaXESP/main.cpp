@@ -13,6 +13,23 @@ boolean glowESPActive = false;
 boolean crosshairESPActive = false;
 boolean triggerActive = false;
 
+void EnableHack(boolean* bPointer, char keyCode, char* hackName) {
+	if (GetKeyState(keyCode) & 0x8000) {
+		if (!*bPointer) {
+			*bPointer = true;
+			printf("INFO: %s activated.\n", hackName);
+
+			Sleep(200);
+		}
+		else {
+			*bPointer = false;
+			printf("INFO: %s deactivated.\n", hackName);
+
+			Sleep(200);
+		}
+	}
+}
+
 int main() {
 
 	printf("Welcome to ChiLaXESP, an open source counter strike hack based on the public glow ESP method.\n\n");
@@ -49,57 +66,10 @@ int main() {
 					printf("\n");
 
 					while (csgoProcess->Alive()) {
-						/*
-						playerList->ActivePlayersToConsole();
-						std::cout << std::flush;
-						Sleep(200);
-						system("CLS");
-						*/
 
-						if (GetKeyState(VK_F7) & 0x8000) {
-							if (!glowESPActive) {
-								glowESPActive = true;
-								printf("INFO: Glow ESP activated.\n");
-
-								Sleep(200);
-							}
-							else {
-								glowESPActive = false;
-								printf("INFO: Glow ESP deactivated.\n");
-
-								Sleep(200);
-							}
-						}
-
-						if (GetKeyState(VK_F8) & 0x8000) {
-							if (!crosshairESPActive) {
-								crosshairESPActive = true;
-								printf("INFO: Crosshair ESP activated.\n");
-
-								Sleep(200);
-							}
-							else {
-								crosshairESPActive = false;
-								printf("INFO: Crosshair ESP deactivated.\n");
-
-								Sleep(200);
-							}
-						}
-
-						if (GetKeyState(VK_F9) & 0x8000) {
-							if (!triggerActive) {
-								triggerActive = true;
-								printf("INFO: Trigger Bot activated.\n");
-
-								Sleep(200);
-							}
-							else {
-								triggerActive = false;
-								printf("INFO: Trigger Bot deactivated.\n");
-
-								Sleep(200);
-							}
-						}
+						EnableHack(&glowESPActive, VK_F7, "Glow ESP");
+						EnableHack(&crosshairESPActive, VK_F8, "Crosshair ESP");
+						EnableHack(&triggerActive, VK_F9, "Trigger Bot");
 
 						if (glowESPActive) {
 							if (!glowESP->AppliedGlow()) {
