@@ -1,6 +1,7 @@
 # ChiLaXESP
 
-An open source hacking project for Counter-Strike: Global Offensive, based on public ESP methods. 
+An open source hacking project for Counter-Strike: Global Offensive, based on public ESP methods.
+ChiLaXESP utilizes the windows standard API for accessing and altering process memory, hence it belongs to the category of external hacks. 
 
 # Glow ESP
 
