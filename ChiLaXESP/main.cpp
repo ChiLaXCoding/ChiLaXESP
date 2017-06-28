@@ -66,11 +66,18 @@ int main() {
 					printf("\n");
 
 					while (csgoProcess->Alive()) {
+						/*
+						playerList->ActivePlayersToConsole();
+						Sleep(200);
+						std::cout << "" << std::flush;
+						system("cls");
+						*/
 
 						EnableHack(&glowESPActive, VK_F7, "Glow ESP");
 						EnableHack(&crosshairESPActive, VK_F8, "Crosshair ESP");
 						EnableHack(&triggerActive, VK_F9, "Trigger Bot");
 
+						
 						if (glowESPActive) {
 							if (!glowESP->AppliedGlow()) {
 								printf("ERROR: Couldnt apply glow effect to enemy players.\n");

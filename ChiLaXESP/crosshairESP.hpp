@@ -32,10 +32,10 @@ private:
 	* CE: aim at another player with the crosshair and search for his entity list index (entity base + 0x64)
 	* aim somewhere else and search for changed value, repeat
 	* 00AADFFC
-	* 04A8A684
-	* 04ED522C
-	* 04F1FDE4
+	* 04A8A654
+	* 04ED51FC
+	* 04F1FDB4
 	*/
-	DWORD crosshairOffset = 0x04A8A684;
+	DWORD crosshairOffset = 0x04A8A654;
 	DWORD targetIDOffset = 0xB2B4;
 };

@@ -30,10 +30,10 @@ private:
 	/*
 	* CE: search for the base address of one player entity
 	* next to the value there have to be at least 4 zeroes
-	* 04FA7690
-	* 04FA76A0
+	* 04FA7660
+	* 04FA7670
 	*/
-	DWORD glowObjectOffset = 0x04FA7690;
+	DWORD glowObjectOffset = 0x04FA7660;
 	DWORD rOffset = 0x4;
 	DWORD gOffset = 0x8;
 	DWORD bOffset = 0xC;

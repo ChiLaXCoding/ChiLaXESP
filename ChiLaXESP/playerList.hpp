@@ -30,10 +30,11 @@ private:
 	* CE: search for own health value and use "hurtme x" command in developer console
 	* next to value is a position value which is 257 normally, and changes when you duck
 	* before the health value is 2x team number
+	* This address -FC must be the player base, pointer scan for the base address must deliver 4 pointers from client.dll
 	* 00AADFFC
-	* 04A8A684
-	* 04ED522C
-	* 04F1FDE4
+	* 04A8A654
+	* 04ED51FC
+	* 04F1FDB4
 	*/
-	DWORD playerBaseOffset = 0x04A8A684;
+	DWORD playerBaseOffset = 0x04A8A654;
 };
