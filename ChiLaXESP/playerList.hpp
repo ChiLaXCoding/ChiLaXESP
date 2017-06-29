@@ -46,7 +46,7 @@ private:
 	//56 8B 89 ? ? ? ? 85 C9 74 ? 8B 01 FF 50 ? 8B F0 85 F6
 	//alt1: 8B 88 ? ? ? ? 85 C9 74 ? 8B 01 8B 40 ? FF D0 8B C8
 	//alt2: 8B 8A ? ? ? ? 85 C9 0F 84 ? ? ? ? 8B 01 FF 50 ? 89
-	BYTE* playerListOffsetAoB = (BYTE*)"\x56\x8B\x89\x00\x00\x00\x00\x85\xC9\x74\x00\x8B\x01\xFF\x50\x00\x8B\xF0\x85\xF6";
+	unsigned char* playerListOffsetAoB = (unsigned char*)"\x56\x8B\x89\x00\x00\x00\x00\x85\xC9\x74\x00\x8B\x01\xFF\x50\x00\x8B\xF0\x85\xF6";
 	char* playerListOffsetMask = "xxx????xxx?xxxx?xxxx";
 	DWORD playerListOffsetOffset = 0x3;
 };

@@ -15,7 +15,7 @@ public:
 	Module(Process* process, WCHAR* moduleName);
 
 	boolean AcquiredBytes();
-	DWORD GetOffsetAtSignature(BYTE* signature, char* mask, DWORD start);
+	DWORD GetOffsetAtSignature(unsigned char* signature, char* mask, DWORD start);
 	DWORD BaseAddress();
 private:
 	Process* process;
@@ -23,6 +23,9 @@ private:
 	DWORD baseAddress;
 	DWORD size;
 	BYTE* bytes;
+	const unsigned char * boyermoore_horspool_memmem(const unsigned char* haystack, size_t hlen,
+			const unsigned char* needle, size_t nlen,
+			const unsigned char wildcard = '?');
 
 	boolean MaskCheck(int nOffset, BYTE* btPattern, const char * strMask, int sigLength);
 	DWORD FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength);

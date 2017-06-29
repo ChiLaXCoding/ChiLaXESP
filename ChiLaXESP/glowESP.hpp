@@ -52,7 +52,7 @@ private:
 	* The base offset will can be found a bit further down, and this memory region is usable as an AoB.
 	*/
 	//0F 11 05 ? ? ? ? 83 C8 01 C7 05 ? ? ? ? 00 00 00 00 0F 28 05
-	BYTE* playerListOffsetAoB = (BYTE*)"\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01\xC7\x05\x00\x00\x00\x00\x00\x00\x00\x00\x0F\x28\x05";
+	unsigned char* playerListOffsetAoB = (unsigned char*)"\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01\xC7\x05\x00\x00\x00\x00\x00\x00\x00\x00\x0F\x28\x05";
 	char* playerListOffsetMask = "xxx????xxxxx????xxxxxxx";
 	DWORD playerListOffsetOffset = 0x3;
 };
