@@ -64,8 +64,9 @@ float* Player::Position() {
 
 void Player::ToConsole() {
 	if ((this->teamNumber == 2) || (this->teamNumber == 3)) {
-		printf("Team: %d Health: %d View Angle: %f %f %f Position: %f %f %f\n", this->teamNumber, this->health,
+		printf("Team: %d Health: %d View Angle: %f %f %f Position: %f %f %f Entity ID: %d\n", this->teamNumber, this->health,
 			this->viewAngle[0], this->viewAngle[1], this->viewAngle[2],
-			this->position[0], this->position[1], this->position[2]);
+			this->position[0], this->position[1], this->position[2],
+			this->entityId);
 	}
 }

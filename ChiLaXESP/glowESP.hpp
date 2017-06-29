@@ -25,15 +25,9 @@ private:
 	PlayerList* playerList;
 	Player* localPlayer;
 
+	DWORD glowObjectOffset;
 	DWORD glowObjectBaseAddress;
 
-	/*
-	* CE: search for the base address of one player entity
-	* next to the value there have to be at least 4 zeroes
-	* 04FA7660
-	* 04FA7670
-	*/
-	DWORD glowObjectOffset = 0x04FA7660;
 	DWORD rOffset = 0x4;
 	DWORD gOffset = 0x8;
 	DWORD bOffset = 0xC;
@@ -47,4 +41,18 @@ private:
 	float red_g = 0.0f;
 	float red_b = 0.0f;
 	float alpha = 1.0f;
+
+	/*
+	* CE: search for the base address of one player entity
+	* next to the value there have to be at least 4 zeroes
+	* 04FA7660
+	* 04FA7670
+	* Find out what accesses this pointer and use the opcodes that have less frequent calls. 
+	* Go to the first one and look at the call above. 
+	* The base offset will can be found a bit further down, and this memory region is usable as an AoB.
+	*/
+	//0F 11 05 ? ? ? ? 83 C8 01 C7 05 ? ? ? ? 00 00 00 00 0F 28 05
+	BYTE* playerListOffsetAoB = (BYTE*)"\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01\xC7\x05\x00\x00\x00\x00\x00\x00\x00\x00\x0F\x28\x05";
+	char* playerListOffsetMask = "xxx????xxxxx????xxxxxxx";
+	DWORD playerListOffsetOffset = 0x3;
 };

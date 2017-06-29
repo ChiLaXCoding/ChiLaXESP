@@ -19,6 +19,7 @@ public:
 
 	boolean AcquireBaseAddress();
 	boolean AppliedCrosshairESP(boolean beeping, boolean triggering);
+	int CurrentTarget();
 private:
 	Process* process;
 	Module* module;
@@ -26,16 +27,10 @@ private:
 	Player* localPlayer;
 	int targetId;
 
-	DWORD crosshairBaseAddress;
-
 	/*
 	* CE: aim at another player with the crosshair and search for his entity list index (entity base + 0x64)
 	* aim somewhere else and search for changed value, repeat
-	* 00AADFFC
-	* 04A8A654
-	* 04ED51FC
-	* 04F1FDB4
+	* base address = player base address
 	*/
-	DWORD crosshairOffset = 0x04A8A654;
 	DWORD targetIDOffset = 0xB2B4;
 };

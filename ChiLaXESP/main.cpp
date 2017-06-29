@@ -48,49 +48,54 @@ int main() {
 		else {
 			PlayerList* playerList = new PlayerList(csgoProcess, clientDllModule, 64);
 
-			GlowESP* glowESP = new GlowESP(csgoProcess, clientDllModule, playerList);
-			
-			if (!glowESP->AcquireBaseAddress()) {
-				printf("ERROR: Couldnt find glow object's base address.\n");
+			if (!playerList->PlayersInitialized()) {
+				printf("ERROR: Couldn't find player list base address.\n");
 			}
 			else {
-				CrosshairESP* crosshairESP = new CrosshairESP(csgoProcess, clientDllModule, playerList);
+				GlowESP* glowESP = new GlowESP(csgoProcess, clientDllModule, playerList);
 
-				if (!crosshairESP->AcquireBaseAddress()) {
-					printf("ERROR: Couldnt find crosshair object's base address.\n");
+				if (!glowESP->AcquireBaseAddress()) {
+					printf("ERROR: Couldnt find glow object's base address.\n");
 				}
 				else {
-					printf("Press F7 to activate or deactivate Glow ESP.\n");
-					printf("Press F8 to activate or deactivate Crosshair ESP.\n");
-					printf("Press F9 to activate or deactivate Trigger Bot.\n");
-					printf("\n");
+					CrosshairESP* crosshairESP = new CrosshairESP(csgoProcess, clientDllModule, playerList);
 
-					while (csgoProcess->Alive()) {
-						/*
-						playerList->ActivePlayersToConsole();
-						Sleep(200);
-						std::cout << "" << std::flush;
-						system("cls");
-						*/
+					if (!crosshairESP->AcquireBaseAddress()) {
+						printf("ERROR: Couldnt find crosshair object's base address.\n");
+					}
+					else {
+						printf("Press F7 to activate or deactivate Glow ESP.\n");
+						printf("Press F8 to activate or deactivate Crosshair ESP.\n");
+						printf("Press F9 to activate or deactivate Trigger Bot.\n");
+						printf("\n");
 
-						EnableHack(&glowESPActive, VK_F7, "Glow ESP");
-						EnableHack(&crosshairESPActive, VK_F8, "Crosshair ESP");
-						EnableHack(&triggerActive, VK_F9, "Trigger Bot");
+						while (csgoProcess->Alive()) {
+							EnableHack(&glowESPActive, VK_F7, "Glow ESP");
+							EnableHack(&crosshairESPActive, VK_F8, "Crosshair ESP");
+							EnableHack(&triggerActive, VK_F9, "Trigger Bot");
 
-						
-						if (glowESPActive) {
-							if (!glowESP->AppliedGlow()) {
-								printf("ERROR: Couldnt apply glow effect to enemy players.\n");
+
+							if (glowESPActive) {
+								if (!glowESP->AppliedGlow()) {
+									printf("ERROR: Couldnt apply glow effect to enemy players.\n");
+									break;
+								}
+							}
+
+							if (!crosshairESP->AppliedCrosshairESP(crosshairESPActive, triggerActive)) {
+								printf("ERROR: Couldnt apply Crosshair ESP.\n");
 								break;
 							}
-						}
 
-						if (!crosshairESP->AppliedCrosshairESP(crosshairESPActive, triggerActive)) {
-							printf("ERROR: Couldnt apply Crosshair ESP.\n");
-							break;
-						}
+							/*
+							playerList->ActivePlayersToConsole();
+							Sleep(200);
+							std::cout << "" << std::flush;
+							system("cls");
+							*/
 
-						Sleep(10); //for performance
+							Sleep(10); //for performance
+						}
 					}
 				}
 			}

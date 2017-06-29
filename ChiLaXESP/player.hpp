@@ -33,11 +33,11 @@ private:
 	DWORD playerBaseOffset;
 	DWORD entityIdOffset = 0x64;
 	DWORD teamNumberOffset = 0xF0;
-	DWORD healthOffset = 0xFC;
+	DWORD healthOffset = teamNumberOffset + 0xC; //0xFC
 	DWORD viewAngleXOffset = 0x128;
 	DWORD viewAngleYOffset = viewAngleXOffset + 0x4;
 	DWORD viewAngleZOffset = viewAngleYOffset + 0x4;
-	DWORD positionXOffset = 0x134;
+	DWORD positionXOffset = viewAngleZOffset + 0x4;
 	DWORD positionYOffset = positionXOffset + 0x4;
 	DWORD positionZOffset = positionYOffset + 0x4;
 	DWORD glowIndexOffset = 0xA320;

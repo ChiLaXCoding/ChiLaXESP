@@ -12,13 +12,24 @@ PlayerList::PlayerList(Process* process, Module* module, int size) {
 	this->process = process;
 	this->module = module;
 	this->size = size;
+}
+
+boolean PlayerList::PlayersInitialized() {
 	this->list = new Player*[size];
 
+	this->playerListOffset = module->GetOffsetAtSignature(this->playerListOffsetAoB, this->playerListOffsetMask, playerListOffsetOffset);
+
+	if ((this->playerListOffset < 0) || (this->playerListOffset > 0x10000000)) {
+		return false;
+	}
+
 	for (int i = 0; i < this->size; i++) {
-		this->list[i] = new Player(process, module, playerBaseOffset + (16 * i));
+		this->list[i] = new Player(process, module, playerListOffset + (16 * (i + 1)));
 
 		this->list[i]->Alive();
 	}
+
+	return true;
 }
 
 int PlayerList::Size() {
@@ -26,6 +37,7 @@ int PlayerList::Size() {
 }
 
 Player* PlayerList::LocalPlayer() {
+	
 	return this->list[0];
 }
 
@@ -33,7 +45,6 @@ void PlayerList::ActivePlayersToConsole() {
 	int count = 1;
 	for (int i = 0; i < this->size; i++) {
 		if (this->list[i]->Alive()) {
-			printf("Player #%d:", count);
 			this->list[i]->ToConsole();
 			count++;
 		}

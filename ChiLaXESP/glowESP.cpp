@@ -16,7 +16,12 @@ GlowESP::GlowESP(Process* process, Module* module, PlayerList* playerList) {
 }
 
 boolean GlowESP::AcquireBaseAddress() {
+	this->glowObjectOffset = module->GetOffsetAtSignature(this->playerListOffsetAoB, this->playerListOffsetMask, playerListOffsetOffset);
 	this->glowObjectBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + glowObjectOffset);
+
+	if ((this->glowObjectOffset < 0) || (this->glowObjectOffset > 0x10000000)) {
+		return false;
+	}
 	
 	DWORD localPlayerPointerAddress = this->glowObjectBaseAddress + (this->glowEntitySize * this->playerList->PlayerGlowIndex(0));
 	DWORD localPlayerBaseAddress = this->process->ValueAtAddress<DWORD>(localPlayerPointerAddress);

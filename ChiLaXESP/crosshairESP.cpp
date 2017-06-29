@@ -17,9 +17,7 @@ CrosshairESP::CrosshairESP(Process* process, Module* module, PlayerList* playerL
 }
 
 boolean CrosshairESP::AcquireBaseAddress() {
-	this->crosshairBaseAddress = this->process->ValueAtAddress<DWORD>(this->module->BaseAddress() + crosshairOffset);
-	
-	this->targetId = this->process->ValueAtAddress<DWORD>(this->crosshairBaseAddress + this->targetIDOffset);
+	this->targetId = this->process->ValueAtAddress<DWORD>(this->localPlayer->PlayerBaseAddress() + this->targetIDOffset);
 
 	if ((this->targetId < 0) || (this->targetId > 64)) {
 		return false;
@@ -31,7 +29,7 @@ boolean CrosshairESP::AcquireBaseAddress() {
 boolean CrosshairESP::AppliedCrosshairESP(boolean beeping, boolean triggering) {
 	if (this->process->Alive()) {
 		if (beeping || triggering) {
-			this->targetId = this->process->ValueAtAddress<DWORD>(this->crosshairBaseAddress + this->targetIDOffset);
+			this->targetId = this->process->ValueAtAddress<DWORD>(this->localPlayer->PlayerBaseAddress() + this->targetIDOffset);
 
 			if (this->playerList->EntityIdAliveAndEnemy(this->targetId, this->localPlayer->TeamNumber())) {
 				if (beeping) {
@@ -48,4 +46,8 @@ boolean CrosshairESP::AppliedCrosshairESP(boolean beeping, boolean triggering) {
 	}
 	
 	return true;
+}
+
+int CrosshairESP::CurrentTarget() {
+	return this->targetId;
 }

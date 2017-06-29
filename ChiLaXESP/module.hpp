@@ -15,7 +15,7 @@ public:
 	Module(Process* process, WCHAR* moduleName);
 
 	boolean AcquiredBytes();
-	DWORD PointerValueBySignature(BYTE* signature, char* mask, DWORD start);
+	DWORD GetOffsetAtSignature(BYTE* signature, char* mask, DWORD start);
 	DWORD BaseAddress();
 private:
 	Process* process;

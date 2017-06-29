@@ -17,20 +17,30 @@ boolean Module::AcquiredBytes() {
 	MODULEENTRY32 moduleEntry = this->process->ModuleEntryByName(moduleName);
 
 	this->baseAddress = (DWORD)moduleEntry.modBaseAddr;
-	this->size = moduleEntry.dwSize;
+	//dwSize is too small and modBaseSize is way too large
+	this->size = 0x500000;
 	this->bytes = new BYTE[this->size];
 
+	wprintf(L"Module %s base address: 0x%x\n", this->moduleName, this->baseAddress);
+	wprintf(L"Module %s size: 0x%x\n", this->moduleName, this->size);
+	wprintf(L"Module %s should end at: 0x%x\n\n", this->moduleName, this->baseAddress + this->size);
+
 	for (DWORD i = 0; i < this->size; i++) {
-		this->bytes[i] = process->ValueAtAddress<BYTE>(this->baseAddress + i);
+		DWORD dword = process->ValueAtAddress<DWORD>(this->baseAddress + i);
+		this->bytes[i] = dword & 0xff; 
+		this->bytes[i + 1] = (dword >> 8) & 0xff; 
+		this->bytes[i + 2] = (dword >> 16) & 0xff;
+		this->bytes[i + 3] = (dword >> 24) & 0xff;(dword >> 24) & 0xff;
+		i += 3;
 	}
 
 	return true;
 }
 
-DWORD Module::PointerValueBySignature(BYTE* signature, char* mask, DWORD offset) {
-	DWORD fileOffset = this->FirstOffsetOfSignature(signature, mask, (int)strlen(mask)) + offset;
-	DWORD signatureAddress = fileOffset + this->baseAddress;
-	DWORD foundOffset = this->process->ValueAtAddress<DWORD>((DWORD)signatureAddress) + fileOffset;
+DWORD Module::GetOffsetAtSignature(BYTE* signature, char* mask, DWORD offset) {
+	DWORD fileOffset = this->FirstOffsetOfSignature(signature, mask, (int)strlen(mask));
+	DWORD signatureAddress = fileOffset + this->baseAddress + offset;
+	DWORD foundOffset = this->process->ValueAtAddress<DWORD>((DWORD)signatureAddress) - this->baseAddress;
 
 	return foundOffset;
 }
@@ -59,11 +69,10 @@ boolean Module::MaskCheck(int nOffset, BYTE* btPattern, const char * strMask, in
 
 DWORD Module::FirstOffsetOfSignature(BYTE* pSignature, const char * pMask, int sigLength)
 {
-	for (int i = 0; i < this->size; i++)
+	for (unsigned int i = 0; i < this->size; i++)
 	{
 		if (MaskCheck(i, pSignature, pMask, sigLength))
 		{
-			printf("signature found at client.dll + 0x%x", i);
 			return i;
 		}
 	}
